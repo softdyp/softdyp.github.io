@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+大约是去年11月， 萌发了建立个人博客的欲望，买域名，买空间，各种折腾，新鲜劲头没有一个月，就奄奄一息了。
+
+最开始的想法挺简单：有个**书写思想积淀的个人空间**。但是在经历了买域名，折腾主题，折腾wordpress，折腾jekyll之后，思想的重心似乎转移到了：我的博客有没有人访问？写的文章质量差会不会被人看不起？花一个小时解决的问题记录下来却需要一个半小时会不会失衡？
+
+这么多乱七八糟的胡思乱想，导致了博客前期的十几篇学习笔记杂文之类的被我废弃到垃圾桶，并且从此再不提博客记录这件事。身边有三四个小伙伴也是一起开始的，都不约而同结束了……
+
+直到今天看了这篇文章：[我为什么坚持写博客](http://www.raychase.net/1959)，我才发现了自己的浅薄无知，分享自己的学习心得，实际上是**把“学”转换为“教”的过程**，把一个问题清楚地表述给别人，教会别人的过程中收获最大的其实是自己。因为你会发现许多从来没有考虑的细节问题。
+
+每个月定期整理自己学过的东西，并且有效记录，变成自己的学习笔记，反复修正，以便帮助他人。无所谓好与坏，多与少，坚持下去，自然会有见证。
+
+此篇文章作为博客的开篇，Just do IT!
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<p>大约是去年11月， 萌发了建立个人博客的欲望，买域名，买空间，各种折腾，新鲜劲头没有一个月，就奄奄一息了。</p>
+
+<p>最开始的想法挺简单：有个<strong>书写思想积淀的个人空间</strong>。但是在经历了买域名，折腾主题，折腾wordpress，折腾jekyll之后，思想的重心似乎转移到了：我的博客有没有人访问？写的文章质量差会不会被人看不起？花一个小时解决的问题记录下来却需要一个半小时会不会失衡？</p>
+
+<p>这么多乱七八糟的胡思乱想，导致了博客前期的十几篇学习笔记杂文之类的被我废弃到垃圾桶，并且从此再不提博客记录这件事。身边有三四个小伙伴也是一起开始的，都不约而同结束了……</p>
+
+<p>直到今天看了这篇文章：<a href="http://www.raychase.net/1959">我为什么坚持写博客</a>，我才发现了自己的浅薄无知，分享自己的学习心得，实际上是<strong>把“学”转换为“教”的过程</strong>，把一个问题清楚地表述给别人，教会别人的过程中收获最大的其实是自己。因为你会发现许多从来没有考虑的细节问题。</p>
+
+<p>每个月定期整理自己学过的东西，并且有效记录，变成自己的学习笔记，反复修正，以便帮助他人。无所谓好与坏，多与少，坚持下去，自然会有见证。</p>
+
+<p>此篇文章作为博客的开篇，Just do IT!</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "post1.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
