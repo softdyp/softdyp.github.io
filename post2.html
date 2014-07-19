@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+## 第一章：JavaScript简史 ##
+###  1.1 JavaScript的起源 ###
+
+JavaScript是Netscape公司与Sun公司合作开发的。
+
+- 在JavaScript出现之前，Web浏览器不过是一种能够显示超文本文档的简单的软件。
+- 在JavaScript出现之后，网页的内容不再局限于枯燥的文本，它们的可交互性得到了显著的改善。
+
+JavaScript 1.0版本====>1995_Netscape Navigator 2浏览器
+> 此时Netscape Navigator主宰着浏览器市场，微软的IE浏览器则扮演着追赶者的角色。微软在推出IE3的时候发布了自己的VBScript语言，同时以JScript为名发布了JavaScript的一个版本，从此很快跟上了Netscape的步伐。面对微软公司的竞争，Netscape 和 Sun 公司联合ECMA （欧洲计算机制造商协会）对JavaScript语言进行了标准化。于是出现了 ECMAScript 语言，这是同一种语言的另一个名字。虽说 ECMAScript 这个名字没有流行开来，但人们现在谈论的JavaScript实际上就是 ECMAScript。
+
+JavaScript 1.1版本====>1996_Netscape和微软公司 第3版浏览器
+> ！！！ JavaScript 与 Sun 公司开发的 Java 程序语言没有任何联系。最开始名字是LiveScript，后来选择"JavaScript"作为正式名称的原因。大概是想让它听起来有系出名门的感觉。
+
+JavaScript是一种脚本语言，通常只能通过Web 浏览器去完成一些操作，而不能像普通意义上的程序那样独立运行。
+
+>- 需要由Web浏览器进行解释和执行，所以JavaScript脚本不像 Java 和 C++ 等编译性程序设计语言那样用途广泛。
+- 相对的简单性也正是JavaScript的长处，比较容易学习和掌握。
+- JavaScript还想程序员提供了一些操控Web浏览器的手段，例如，JavaScript语言可以用来调整Web浏览器窗口的高度、宽度和位置等属性。这种设定浏览器属性的方法可以看作是BOM（浏览器对象模型）。JavaScript的早期版本还提供了一种初级的DOM。
+
+### 1.2 DOM ###
+**DOM是一套对文档的内容进行抽象和概念化的方法。**
+
+JavaScript的早期版本向程序员提供了查询和操控 Web文档某些实际内容（主要是图像和表单）的手段。因为JavaScript预先定义了“images”和“forms”等术语，我们才能像下面这样在JavaScript脚本里引用“文档的第三个图像”或“文档中名为“details”的表单：
+    document.images[2]；
+    document.forms['details']
+
+现在的人们通常把这种试验性质的初级DOM称为“第0级DOM”（DOM Level 0）。在还未形成统一标准的初级阶段，“第0级DOM”的常见用途是翻转图片和验证表单数据。Netscape和微软公司各自推出第四代浏览器产品以后，DOM开始遇到麻烦，陷入困境。
+    
+### 1.3 浏览器战争 ###
+
+Netscape Navigator 4 发布于1997年6月，IE4发布于同年10月。这两种浏览器都对它们的早期版本进行了许多改进，大幅扩展了DOM，使能够通过 JavaScript完成的功能大幅度增加。而网页设计人员也开始接触到一个新名词： DHTML。
+
+#### 1.3.1 DHTML ####
+DHTML是“Dynamic HTML”（动态HTML）的简称。DHTML并不是一项新技术，而是描述HTML、CSS和JavaScript技术组合的术语。DHTML 背后的含义是：
+- 利用HTML把网页标记为各种元素；
+- 利用CSS设置元素样式和它们的显示位置；
+- 利用JavaScript实时地操控页面和改变样式。
+
+利用DHTML，复杂的动画效果一下子变得非常容易实现。例如，用HTML标记一个页面元素：
+	` <div id="myelement">This is my element</div>`
+
+然后用CSS为这个页面元素定义如下位置样式：
+	`#myelement{ position:absolute;left:50px;top:100px;}`
+
+接下来，只需利用JavaScript改变myelement元素的 left 和 top 样式，就可以让它在页面上随意移动。不过，这只是理论而已。
+
+不幸的是，NN4和IE4浏览器使用的是两种不兼容的DOM。换句话说，虽然浏览器制造商的目标一样，但他们在解决DOM问题时采用的办法却完全不同。
+
+#### 1.3.2 浏览器之间的冲突 ####
+
+Netscape公司的DOM使用了专有元素，这些元素成为层（layer）。层有唯一的ID，JavaScript代码需要像下面这样引用它们：
+	`document.layers['myelement']`
+而在微软公司的DOM元素中必须像这样引用它们：
+	`document.all['myelement']`.
+
+这两种DOM的差异并不止这一点。假如你想找出myelement元素的left位置并把它赋给变量xpos，那么在Netscape Navigator 4浏览器里必须这样做：
+	`var xpos = document.layers['myelement'].left;`
+
+而在IE 4 浏览器中，需要使用如下所示的语句才能完成同样的工作：
+	`var xpos = document.all['myelement'].leftpos;`
+
+这就导致了一种很可笑的局面：程序员在编写DOM脚本代码是必须知道它们将运行在哪种浏览器环境里，所以在实际工作中，许多脚本都不得不编写两次，一次为Netscape Navigator，另一次为IE。同时，为了确保能够正确地向不同浏览器提供与之对应的脚本，程序员还必须编写一些代码去探查在客户端运行的浏览器到底是哪一种。
+
+DHTML打开了一个充满机会的世界，但想要进入其中的人们却发现这是个充满苦难的世界。因此，没多久，DHTML就从一个大热门变成了一个人们不愿提起的名词。
+
+### 1.4 制定标准 ###
+
+就在浏览器制造商以DOM 为武器展开营销大战的同时，W3C不事声张地结合大家的优点推出了一个标准化的DOM。令人欣慰的是，Netscape、微软和其他浏览器制造商们还能抛开彼此的敌意而与W3C携手制定新的标准，并于1998年10月完成了“第一级DOM”。
+
+刚才的例子，使用新的标准化DOM时需要用到的语法：
+	`var xpos = document.getElementById('myelement').style.left`
+
+W3C推出的标准化DOM可以让任何一种程序设计语言对使用任何一种标记语言编写出来的任何一份文档进行操控。
+#### 1.4.1 浏览器以外的考虑 ####
+
+DOM是一种API（应用编程接口）。
+
+W3C对DOM的定义是：“一个与系统平台和编程语言无关的借口，程序和脚本可以通过这种接口动态地访问和修改文档的内容、结构和样式。”
+
+#### 1.4.2 浏览器战争的结局 ####
+
+微软战胜了Netscape。
+
+Web标准计划（[WaSP](http://www.webstandards.org/)，http://www.webstandards.org/）。WaSP小组采取的第一个行动就是，鼓励浏览器制造商们采用W3C制定和推荐的各项标准，也就是在浏览器制造商们的帮助下得以起草和完善的那些标准。
+
+
+#### 1.4.3 崭新的起点 ####
+
+尽管还没有一款浏览器完美无瑕地实现W3C DOM。但所有现代浏览器对DOM特性的覆盖率都基本达到了95%。
+
+### 1.5 小结 ###
+
+DHTML曾被认为是HTML/XHTML、CSS和JavaScript相结合的产物，就像今天的HTML5那样，但把这些东西真正凝聚在一起的是DOM。DHTML只适用于Web文档，“DOM脚本程序设计”则涵盖了使用任何一种支持DOM API的程序设计语言去处理任何一种标记文档的情况。
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="javascript">第一章：JavaScript简史</h2>
+
+<h3 id="11javascript">1.1 JavaScript的起源</h3>
+
+<p>JavaScript是Netscape公司与Sun公司合作开发的。</p>
+
+<ul>
+<li>在JavaScript出现之前，Web浏览器不过是一种能够显示超文本文档的简单的软件。</li>
+<li>在JavaScript出现之后，网页的内容不再局限于枯燥的文本，它们的可交互性得到了显著的改善。</li>
+</ul>
+
+<p>JavaScript 1.0版本====&gt;1995_Netscape Navigator 2浏览器</p>
+
+<blockquote>
+  <p>此时Netscape Navigator主宰着浏览器市场，微软的IE浏览器则扮演着追赶者的角色。微软在推出IE3的时候发布了自己的VBScript语言，同时以JScript为名发布了JavaScript的一个版本，从此很快跟上了Netscape的步伐。面对微软公司的竞争，Netscape 和 Sun 公司联合ECMA （欧洲计算机制造商协会）对JavaScript语言进行了标准化。于是出现了 ECMAScript 语言，这是同一种语言的另一个名字。虽说 ECMAScript 这个名字没有流行开来，但人们现在谈论的JavaScript实际上就是 ECMAScript。</p>
+</blockquote>
+
+<p>JavaScript 1.1版本====&gt;1996_Netscape和微软公司 第3版浏览器</p>
+
+<blockquote>
+  <p>！！！ JavaScript 与 Sun 公司开发的 Java 程序语言没有任何联系。最开始名字是LiveScript，后来选择"JavaScript"作为正式名称的原因。大概是想让它听起来有系出名门的感觉。</p>
+</blockquote>
+
+<p>JavaScript是一种脚本语言，通常只能通过Web 浏览器去完成一些操作，而不能像普通意义上的程序那样独立运行。</p>
+
+<blockquote>
+  <ul>
+  <li>需要由Web浏览器进行解释和执行，所以JavaScript脚本不像 Java 和 C++ 等编译性程序设计语言那样用途广泛。</li>
+  <li>相对的简单性也正是JavaScript的长处，比较容易学习和掌握。</li>
+  <li>JavaScript还想程序员提供了一些操控Web浏览器的手段，例如，JavaScript语言可以用来调整Web浏览器窗口的高度、宽度和位置等属性。这种设定浏览器属性的方法可以看作是BOM（浏览器对象模型）。JavaScript的早期版本还提供了一种初级的DOM。</li>
+  </ul>
+</blockquote>
+
+<h3 id="12dom">1.2 DOM</h3>
+
+<p><strong>DOM是一套对文档的内容进行抽象和概念化的方法。</strong></p>
+
+<p>JavaScript的早期版本向程序员提供了查询和操控 Web文档某些实际内容（主要是图像和表单）的手段。因为JavaScript预先定义了“images”和“forms”等术语，我们才能像下面这样在JavaScript脚本里引用“文档的第三个图像”或“文档中名为“details”的表单：
+    document.images[2]；
+    document.forms['details']</p>
+
+<p>现在的人们通常把这种试验性质的初级DOM称为“第0级DOM”（DOM Level 0）。在还未形成统一标准的初级阶段，“第0级DOM”的常见用途是翻转图片和验证表单数据。Netscape和微软公司各自推出第四代浏览器产品以后，DOM开始遇到麻烦，陷入困境。</p>
+
+<h3 id="13">1.3 浏览器战争</h3>
+
+<p>Netscape Navigator 4 发布于1997年6月，IE4发布于同年10月。这两种浏览器都对它们的早期版本进行了许多改进，大幅扩展了DOM，使能够通过 JavaScript完成的功能大幅度增加。而网页设计人员也开始接触到一个新名词： DHTML。</p>
+
+<h4 id="131dhtml">1.3.1 DHTML</h4>
+
+<p>DHTML是“Dynamic HTML”（动态HTML）的简称。DHTML并不是一项新技术，而是描述HTML、CSS和JavaScript技术组合的术语。DHTML 背后的含义是：
+- 利用HTML把网页标记为各种元素；
+- 利用CSS设置元素样式和它们的显示位置；
+- 利用JavaScript实时地操控页面和改变样式。</p>
+
+<p>利用DHTML，复杂的动画效果一下子变得非常容易实现。例如，用HTML标记一个页面元素：
+    <code>&lt;div id="myelement"&gt;This is my element&lt;/div&gt;</code></p>
+
+<p>然后用CSS为这个页面元素定义如下位置样式：
+    <code>#myelement{ position:absolute;left:50px;top:100px;}</code></p>
+
+<p>接下来，只需利用JavaScript改变myelement元素的 left 和 top 样式，就可以让它在页面上随意移动。不过，这只是理论而已。</p>
+
+<p>不幸的是，NN4和IE4浏览器使用的是两种不兼容的DOM。换句话说，虽然浏览器制造商的目标一样，但他们在解决DOM问题时采用的办法却完全不同。</p>
+
+<h4 id="132">1.3.2 浏览器之间的冲突</h4>
+
+<p>Netscape公司的DOM使用了专有元素，这些元素成为层（layer）。层有唯一的ID，JavaScript代码需要像下面这样引用它们：
+    <code>document.layers['myelement']</code>
+而在微软公司的DOM元素中必须像这样引用它们：
+    <code>document.all['myelement']</code>.</p>
+
+<p>这两种DOM的差异并不止这一点。假如你想找出myelement元素的left位置并把它赋给变量xpos，那么在Netscape Navigator 4浏览器里必须这样做：
+    <code>var xpos = document.layers['myelement'].left;</code></p>
+
+<p>而在IE 4 浏览器中，需要使用如下所示的语句才能完成同样的工作：
+    <code>var xpos = document.all['myelement'].leftpos;</code></p>
+
+<p>这就导致了一种很可笑的局面：程序员在编写DOM脚本代码是必须知道它们将运行在哪种浏览器环境里，所以在实际工作中，许多脚本都不得不编写两次，一次为Netscape Navigator，另一次为IE。同时，为了确保能够正确地向不同浏览器提供与之对应的脚本，程序员还必须编写一些代码去探查在客户端运行的浏览器到底是哪一种。</p>
+
+<p>DHTML打开了一个充满机会的世界，但想要进入其中的人们却发现这是个充满苦难的世界。因此，没多久，DHTML就从一个大热门变成了一个人们不愿提起的名词。</p>
+
+<h3 id="14">1.4 制定标准</h3>
+
+<p>就在浏览器制造商以DOM 为武器展开营销大战的同时，W3C不事声张地结合大家的优点推出了一个标准化的DOM。令人欣慰的是，Netscape、微软和其他浏览器制造商们还能抛开彼此的敌意而与W3C携手制定新的标准，并于1998年10月完成了“第一级DOM”。</p>
+
+<p>刚才的例子，使用新的标准化DOM时需要用到的语法：
+    <code>var xpos = document.getElementById('myelement').style.left</code></p>
+
+<p>W3C推出的标准化DOM可以让任何一种程序设计语言对使用任何一种标记语言编写出来的任何一份文档进行操控。</p>
+
+<h4 id="141">1.4.1 浏览器以外的考虑</h4>
+
+<p>DOM是一种API（应用编程接口）。</p>
+
+<p>W3C对DOM的定义是：“一个与系统平台和编程语言无关的借口，程序和脚本可以通过这种接口动态地访问和修改文档的内容、结构和样式。”</p>
+
+<h4 id="142">1.4.2 浏览器战争的结局</h4>
+
+<p>微软战胜了Netscape。</p>
+
+<p>Web标准计划（<a href="http://www.webstandards.org/">WaSP</a>，http://www.webstandards.org/）。WaSP小组采取的第一个行动就是，鼓励浏览器制造商们采用W3C制定和推荐的各项标准，也就是在浏览器制造商们的帮助下得以起草和完善的那些标准。</p>
+
+<h4 id="143">1.4.3 崭新的起点</h4>
+
+<p>尽管还没有一款浏览器完美无瑕地实现W3C DOM。但所有现代浏览器对DOM特性的覆盖率都基本达到了95%。</p>
+
+<h3 id="15">1.5 小结</h3>
+
+<p>DHTML曾被认为是HTML/XHTML、CSS和JavaScript相结合的产物，就像今天的HTML5那样，但把这些东西真正凝聚在一起的是DOM。DHTML只适用于Web文档，“DOM脚本程序设计”则涵盖了使用任何一种支持DOM API的程序设计语言去处理任何一种标记文档的情况。</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "post2.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
