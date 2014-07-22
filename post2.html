@@ -49,8 +49,10 @@ JavaScript是一种脚本语言，通常只能通过Web 浏览器去完成一些
 **DOM是一套对文档的内容进行抽象和概念化的方法。**
 
 JavaScript的早期版本向程序员提供了查询和操控 Web文档某些实际内容（主要是图像和表单）的手段。因为JavaScript预先定义了“images”和“forms”等术语，我们才能像下面这样在JavaScript脚本里引用“文档的第三个图像”或“文档中名为“details”的表单：
-    document.images[2]；
-    document.forms['details']
+
+`document.images[2]；`
+
+`document.forms['details']`
 
 现在的人们通常把这种试验性质的初级DOM称为“第0级DOM”（DOM Level 0）。在还未形成统一标准的初级阶段，“第0级DOM”的常见用途是翻转图片和验证表单数据。Netscape和微软公司各自推出第四代浏览器产品以后，DOM开始遇到麻烦，陷入困境。
     
@@ -65,10 +67,12 @@ DHTML是“Dynamic HTML”（动态HTML）的简称。DHTML并不是一项新技
 - 利用JavaScript实时地操控页面和改变样式。
 
 利用DHTML，复杂的动画效果一下子变得非常容易实现。例如，用HTML标记一个页面元素：
-	` <div id="myelement">This is my element</div>`
+
+` <div id="myelement">This is my element</div>`
 
 然后用CSS为这个页面元素定义如下位置样式：
-	`#myelement{ position:absolute;left:50px;top:100px;}`
+
+`#myelement{ position:absolute;left:50px;top:100px;}`
 
 接下来，只需利用JavaScript改变myelement元素的 left 和 top 样式，就可以让它在页面上随意移动。不过，这只是理论而已。
 
@@ -77,15 +81,20 @@ DHTML是“Dynamic HTML”（动态HTML）的简称。DHTML并不是一项新技
 #### 1.3.2 浏览器之间的冲突 ####
 
 Netscape公司的DOM使用了专有元素，这些元素成为层（layer）。层有唯一的ID，JavaScript代码需要像下面这样引用它们：
-	`document.layers['myelement']`
+
+`document.layers['myelement']`
+
 而在微软公司的DOM元素中必须像这样引用它们：
-	`document.all['myelement']`.
+
+`document.all['myelement']`.
 
 这两种DOM的差异并不止这一点。假如你想找出myelement元素的left位置并把它赋给变量xpos，那么在Netscape Navigator 4浏览器里必须这样做：
-	`var xpos = document.layers['myelement'].left;`
+
+`var xpos = document.layers['myelement'].left;`
 
 而在IE 4 浏览器中，需要使用如下所示的语句才能完成同样的工作：
-	`var xpos = document.all['myelement'].leftpos;`
+
+`var xpos = document.all['myelement'].leftpos;`
 
 这就导致了一种很可笑的局面：程序员在编写DOM脚本代码是必须知道它们将运行在哪种浏览器环境里，所以在实际工作中，许多脚本都不得不编写两次，一次为Netscape Navigator，另一次为IE。同时，为了确保能够正确地向不同浏览器提供与之对应的脚本，程序员还必须编写一些代码去探查在客户端运行的浏览器到底是哪一种。
 
@@ -96,7 +105,8 @@ DHTML打开了一个充满机会的世界，但想要进入其中的人们却发
 就在浏览器制造商以DOM 为武器展开营销大战的同时，W3C不事声张地结合大家的优点推出了一个标准化的DOM。令人欣慰的是，Netscape、微软和其他浏览器制造商们还能抛开彼此的敌意而与W3C携手制定新的标准，并于1998年10月完成了“第一级DOM”。
 
 刚才的例子，使用新的标准化DOM时需要用到的语法：
-	`var xpos = document.getElementById('myelement').style.left`
+
+`var xpos = document.getElementById('myelement').style.left`
 
 W3C推出的标准化DOM可以让任何一种程序设计语言对使用任何一种标记语言编写出来的任何一份文档进行操控。
 #### 1.4.1 浏览器以外的考虑 ####
@@ -119,7 +129,6 @@ Web标准计划（[WaSP](http://www.webstandards.org/)，http://www.webstandards
 ### 1.5 小结 ###
 
 DHTML曾被认为是HTML/XHTML、CSS和JavaScript相结合的产物，就像今天的HTML5那样，但把这些东西真正凝聚在一起的是DOM。DHTML只适用于Web文档，“DOM脚本程序设计”则涵盖了使用任何一种支持DOM API的程序设计语言去处理任何一种标记文档的情况。
-
 <!-- markdown end -->
 </div>
 <div class="entry" id="main">
@@ -161,9 +170,11 @@ DHTML曾被认为是HTML/XHTML、CSS和JavaScript相结合的产物，就像今�
 
 <p><strong>DOM是一套对文档的内容进行抽象和概念化的方法。</strong></p>
 
-<p>JavaScript的早期版本向程序员提供了查询和操控 Web文档某些实际内容（主要是图像和表单）的手段。因为JavaScript预先定义了“images”和“forms”等术语，我们才能像下面这样在JavaScript脚本里引用“文档的第三个图像”或“文档中名为“details”的表单：
-    document.images[2]；
-    document.forms['details']</p>
+<p>JavaScript的早期版本向程序员提供了查询和操控 Web文档某些实际内容（主要是图像和表单）的手段。因为JavaScript预先定义了“images”和“forms”等术语，我们才能像下面这样在JavaScript脚本里引用“文档的第三个图像”或“文档中名为“details”的表单：</p>
+
+<p><code>document.images[2]；</code></p>
+
+<p><code>document.forms['details']</code></p>
 
 <p>现在的人们通常把这种试验性质的初级DOM称为“第0级DOM”（DOM Level 0）。在还未形成统一标准的初级阶段，“第0级DOM”的常见用途是翻转图片和验证表单数据。Netscape和微软公司各自推出第四代浏览器产品以后，DOM开始遇到麻烦，陷入困境。</p>
 
@@ -178,11 +189,13 @@ DHTML曾被认为是HTML/XHTML、CSS和JavaScript相结合的产物，就像今�
 - 利用CSS设置元素样式和它们的显示位置；
 - 利用JavaScript实时地操控页面和改变样式。</p>
 
-<p>利用DHTML，复杂的动画效果一下子变得非常容易实现。例如，用HTML标记一个页面元素：
-    <code>&lt;div id="myelement"&gt;This is my element&lt;/div&gt;</code></p>
+<p>利用DHTML，复杂的动画效果一下子变得非常容易实现。例如，用HTML标记一个页面元素：</p>
 
-<p>然后用CSS为这个页面元素定义如下位置样式：
-    <code>#myelement{ position:absolute;left:50px;top:100px;}</code></p>
+<p><code>&lt;div id="myelement"&gt;This is my element&lt;/div&gt;</code></p>
+
+<p>然后用CSS为这个页面元素定义如下位置样式：</p>
+
+<p><code>#myelement{ position:absolute;left:50px;top:100px;}</code></p>
 
 <p>接下来，只需利用JavaScript改变myelement元素的 left 和 top 样式，就可以让它在页面上随意移动。不过，这只是理论而已。</p>
 
@@ -190,16 +203,21 @@ DHTML曾被认为是HTML/XHTML、CSS和JavaScript相结合的产物，就像今�
 
 <h4 id="132">1.3.2 浏览器之间的冲突</h4>
 
-<p>Netscape公司的DOM使用了专有元素，这些元素成为层（layer）。层有唯一的ID，JavaScript代码需要像下面这样引用它们：
-    <code>document.layers['myelement']</code>
-而在微软公司的DOM元素中必须像这样引用它们：
-    <code>document.all['myelement']</code>.</p>
+<p>Netscape公司的DOM使用了专有元素，这些元素成为层（layer）。层有唯一的ID，JavaScript代码需要像下面这样引用它们：</p>
 
-<p>这两种DOM的差异并不止这一点。假如你想找出myelement元素的left位置并把它赋给变量xpos，那么在Netscape Navigator 4浏览器里必须这样做：
-    <code>var xpos = document.layers['myelement'].left;</code></p>
+<p><code>document.layers['myelement']</code></p>
 
-<p>而在IE 4 浏览器中，需要使用如下所示的语句才能完成同样的工作：
-    <code>var xpos = document.all['myelement'].leftpos;</code></p>
+<p>而在微软公司的DOM元素中必须像这样引用它们：</p>
+
+<p><code>document.all['myelement']</code>.</p>
+
+<p>这两种DOM的差异并不止这一点。假如你想找出myelement元素的left位置并把它赋给变量xpos，那么在Netscape Navigator 4浏览器里必须这样做：</p>
+
+<p><code>var xpos = document.layers['myelement'].left;</code></p>
+
+<p>而在IE 4 浏览器中，需要使用如下所示的语句才能完成同样的工作：</p>
+
+<p><code>var xpos = document.all['myelement'].leftpos;</code></p>
 
 <p>这就导致了一种很可笑的局面：程序员在编写DOM脚本代码是必须知道它们将运行在哪种浏览器环境里，所以在实际工作中，许多脚本都不得不编写两次，一次为Netscape Navigator，另一次为IE。同时，为了确保能够正确地向不同浏览器提供与之对应的脚本，程序员还必须编写一些代码去探查在客户端运行的浏览器到底是哪一种。</p>
 
@@ -209,8 +227,9 @@ DHTML曾被认为是HTML/XHTML、CSS和JavaScript相结合的产物，就像今�
 
 <p>就在浏览器制造商以DOM 为武器展开营销大战的同时，W3C不事声张地结合大家的优点推出了一个标准化的DOM。令人欣慰的是，Netscape、微软和其他浏览器制造商们还能抛开彼此的敌意而与W3C携手制定新的标准，并于1998年10月完成了“第一级DOM”。</p>
 
-<p>刚才的例子，使用新的标准化DOM时需要用到的语法：
-    <code>var xpos = document.getElementById('myelement').style.left</code></p>
+<p>刚才的例子，使用新的标准化DOM时需要用到的语法：</p>
+
+<p><code>var xpos = document.getElementById('myelement').style.left</code></p>
 
 <p>W3C推出的标准化DOM可以让任何一种程序设计语言对使用任何一种标记语言编写出来的任何一份文档进行操控。</p>
 
