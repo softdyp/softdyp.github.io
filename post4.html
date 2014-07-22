@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+## JavaScript 语法 ##
+### 2.1 JavaScript 执行的两种方式 ###
+1. `<head>`标签中的`<script>`标签之间；
+2. 把JavaScript 代码存为一个扩展名为.js的独立文件
+	1. 在`<head>`部分放一个`<script>`标签，并把它的src属性指向该文件；
+	2. 放在HTML文档的最后，`</body>`标签之前。（这样能使浏览器更快地加载页面）
+
+### 2.2 语法 ###
+“语法”：语言结构方面的各项规则；
+#### 2.2.1 语句 ####
+“语句”：用JavaScript编写的脚本，与其他语言编写出来的脚本一样，都由一系列指令构成，这些指令叫做语句（statement）。只有按照正确的语法编写出来的语句才能得到正确的解释。
+
+
+JavaScript只需要简单地把各条语句放在不同的行上就可以分隔它们，如下所示：
+
+`first statement`
+
+`second statement`
+
+如果你想把多条语句放在同一行上，就必须像下面这样用分号分隔它们：
+	`first statement ; second statement;`
+
+良好的编程习惯：
+
+`first statement;`
+
+`second statement;`
+
+这样做：让代码更容易阅读。让每条语句独占一行的做法更容易追踪JavaScript脚本的执行顺序。
+
+#### 2.2.2 注释 ####
+1. `//自我提醒：有注释是好事`
+2. `//自我提醒`
+    `//有注释是好事`
+3. `/* 自我提醒：
+	有注释是好事 */`
+4. HTML风格的注释：`<!- 这是JavaScript中的注释`
+                  `<!-- 这是HTML中的注释-->`(JavaScript不要求，它会把“-->”视为注释内容的一部分)
+
+> HTML允许上面的注释跨越多个行，但JavaScript要求这种注释的每行都必须在开头加上`“<!--”`来作为标志。所以最好不要在JavaScript脚本中使用这种风格的注释。建议用“//”注释单行，用"/*"注释多行。
+
+#### 2.2.3 变量 ####
+变量（variable）: 会发生变化的东西。
+
+赋值（assignment）：把值存入变量的操作。
+
+一个变量被赋值以后，我们就说该变量包含这个值。
+
+声明（declare）：使用任何变量之前必须先对它做出“介绍”，也称为声明（declare）。
+
+在 JavaScript脚本中，如果程序员在对某个变量赋值之前未声明，赋值操作将自动声明该变量。
+
+变量和其他语法元素的名字都是区分字母大小写的。变量名中不允许包含空格或标点符号（美元符号“$”例外）。
+
+JavaScript变量名允许包含字母、数字、美元符号和下划线（但第一个字母不允许是数字）。首选格式：驼峰格式（camel case）。
+
+字面量（literal）：可以直接在JavaScript代码中写出来的数据。如下代码中的单词“happy”
+	
+`var myMood = "happy"` 
+
+#### 2.2.4 数据类型 ####
+类型声明（typing）：声明变量的同时同时声明变量的数据类型。
+
+强类型（strongly typed）语言：必须明确类型声明；
+
+弱类型（weakly typed）语言：不需要进行类型声明。
+
+数据类型：
+
+1.字符串
+
+字符串由零个或多个字符构成。字符包括（但不限于）字母、数字、标点符号和空格。字符串必须包在引号里。单引号双引号均可。但最好是根据字符串所包含的字符来选择。若字符串包含双引号，就把整个字符串放在单引号里；如果字符串包含单引号，就把整个字符串放在双引号里。
+
+ `var mood = "don't ask"`
+
+如果想在上面这条语句中使用单引号，就必须保证字母“n”和“t”之间的单引号能被当成这个字符串的一部分。这种情况下这个单引号需要被看作一个普通字符，而不是这个字符串的结束标志。这种情况我们需要对这个字符进行转义（escaping）。在JavaScript里用反斜线对字符进行转义：
+
+`var mood = "don\'t ask";`
+
+2.数值：不用限定必须是一个整数。可以是带小数点的数值，并且允许任意位小数（即浮点数）。也可以是负数。或者是负数浮点数。
+
+3.布尔值：true或false
+
+#### 2.2.5 数组 ####
+字符串、数值和布尔值都是标量（scalar）。如果某个变量是标量，它在任意时刻就只能有一个值、如果想用一个变量来存储一组值，就需要使用数组（array）。
+
+数组：用一个变量表示一个值的集合，集合中的每个值都是这个数组的一个元素（element）。
+
+数组可以用关键字Array声明。声明数组的同时还可以指定数组初始元素个数，也就是这个数组的长度（length）：
+
+`var demo = Array(4);`
+
+向数组中添加元素的操作称为填充（populating）。在填充数组时，不仅需要给出新元素的值，还需要给出新元素在数组中的存放位置，这个位置就是这个元素的下标（index）。数组中一个元素对应一个下标。下标必须用方括号括起来：
+
+`array[index] = element;`
+
+即方式一：
+
+`var demo = Array(4);`
+
+`array[0] = element1;`
+
+`array[1] = element2;`
+
+`array[2] = element3;`
+
+`array[3] = element4;`
+
+方式二：
+
+`var demo = Array(element1,element2,element3,element4);`
+
+方式三：
+
+`var demo = [element1,element2,element3,element4];`
+
+数组元素可以是字符串、布尔值或者是数值。甚至可以是这3种数据类型的混合。
+
+数组元素也可以是变量，可以是另一个数组的元素。甚至可以包含其他的数组！
+
+关联数组：
+
+`var lennon = Array();`
+
+`lennon["name"] = "John";`
+
+`lennon["year"] = 1940;`
+
+`lennon["living"] = false;`
+
+这样的数组可以使用字符串来代替数字值，因为代码更具有可读性。
+
+但是！！！这种用法并不是一个好习惯。本质上，创建关联数组时，创建的是Array对象的属性。在JavaScript中，所有的变量实际上都是某种类型的对象。比如，一个布尔值就是一个Boolean类型的对象。
+
+在上面的例子中，实际上是给lennon 数组添加了 name、year和 living三个属性。理想情况下，不应该修改Array对象的属性，而应该使用通用的对象（object）。
+
+#### 2.2.6 ####
+
+与数组类似，对象也是使用一个名字表示一组值。对象的每个值都是对象的一个属性。例如，上面的lennon数组也可以创建成下面这个对象：
+
+`var lennon = Object();`
+
+`lennon.name = "John";`
+
+`lennon.year = 1940;`
+
+`lennon.living = false;`
+
+与使用Array 类似，创建对象使用 Object关键字。它不使用方括号和下标来获取元素，而是和任何JavaScript对象一样，使用点号来获取属性。
+
+另一种方法：花括号语法：
+
+`{ propertyName:value,propertyName:value}`
+
+比如，lennon 对象也可以写成下面这样：
+
+`var lennon = { name:"John",year:1940,living:false};`
+
+属性名与JavaScript变量的命名规则有相同之处，属性值可以是任何JavaScript值，包括其他对象。
+
+用对象来代替传统数组的做法意味着可以通过元素的名字而不是下标数字来引用它们。这大大提高了脚本的可读性。
+
+下面，创建一个新的beatles数组，并用刚才创建的lennon对象来填充它的第一个元素。
+
+`var beatles = Array();`
+
+`beatles[0] = lennon;`
+
+现在，不需要使用那么多数就可以获得想要的元素。我们不能使用 beatles[0][0] 而是使用 beatles[0].name 得到值"john".
+
+在此基础上，可以做进一步的改进：把 beatles 数组也声明为对象而不是传统数组。这样一来，我们就可以用“drummer”或“bassist”等更有意义且更容易记忆的字符串值——而不是一些枯燥乏味的整数——作为下标去访问这个数组里的元素了：
+
+`var beatles = {};`
+
+`beatles.vocalist = lennon;`
+
+现在,beatles.vocalist.name的值是“john”，beatles.vocalist.year的值是1940，beatles.vocalist.living的值是false。
+
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="javascript">JavaScript 语法</h2>
+
+<h3 id="21javascript">2.1 JavaScript 执行的两种方式</h3>
+
+<ol>
+<li><code>&lt;head&gt;</code>标签中的<code>&lt;script&gt;</code>标签之间；</li>
+<li>把JavaScript 代码存为一个扩展名为.js的独立文件
+<ol><li>在<code>&lt;head&gt;</code>部分放一个<code>&lt;script&gt;</code>标签，并把它的src属性指向该文件；</li>
+<li>放在HTML文档的最后，<code>&lt;/body&gt;</code>标签之前。（这样能使浏览器更快地加载页面）</li></ol></li>
+</ol>
+
+<h3 id="22">2.2 语法</h3>
+
+<p>“语法”：语言结构方面的各项规则；</p>
+
+<h4 id="221">2.2.1 语句</h4>
+
+<p>“语句”：用JavaScript编写的脚本，与其他语言编写出来的脚本一样，都由一系列指令构成，这些指令叫做语句（statement）。只有按照正确的语法编写出来的语句才能得到正确的解释。</p>
+
+<p>JavaScript只需要简单地把各条语句放在不同的行上就可以分隔它们，如下所示：</p>
+
+<p><code>first statement</code></p>
+
+<p><code>second statement</code></p>
+
+<p>如果你想把多条语句放在同一行上，就必须像下面这样用分号分隔它们：
+    <code>first statement ; second statement;</code></p>
+
+<p>良好的编程习惯：</p>
+
+<p><code>first statement;</code></p>
+
+<p><code>second statement;</code></p>
+
+<p>这样做：让代码更容易阅读。让每条语句独占一行的做法更容易追踪JavaScript脚本的执行顺序。</p>
+
+<h4 id="222">2.2.2 注释</h4>
+
+<ol>
+<li><code>//自我提醒：有注释是好事</code></li>
+<li><code>//自我提醒</code>
+<code>//有注释是好事</code></li>
+<li><code>/* 自我提醒：
+有注释是好事 */</code></li>
+<li>HTML风格的注释：<code>&lt;!- 这是JavaScript中的注释</code>
+              <code>&lt;!-- 这是HTML中的注释--&gt;</code>(JavaScript不要求，它会把“--&gt;”视为注释内容的一部分)</li>
+</ol>
+
+<blockquote>
+  <p>HTML允许上面的注释跨越多个行，但JavaScript要求这种注释的每行都必须在开头加上<code>“&lt;!--”</code>来作为标志。所以最好不要在JavaScript脚本中使用这种风格的注释。建议用“//”注释单行，用"/*"注释多行。</p>
+</blockquote>
+
+<h4 id="223">2.2.3 变量</h4>
+
+<p>变量（variable）: 会发生变化的东西。</p>
+
+<p>赋值（assignment）：把值存入变量的操作。</p>
+
+<p>一个变量被赋值以后，我们就说该变量包含这个值。</p>
+
+<p>声明（declare）：使用任何变量之前必须先对它做出“介绍”，也称为声明（declare）。</p>
+
+<p>在 JavaScript脚本中，如果程序员在对某个变量赋值之前未声明，赋值操作将自动声明该变量。</p>
+
+<p>变量和其他语法元素的名字都是区分字母大小写的。变量名中不允许包含空格或标点符号（美元符号“$”例外）。</p>
+
+<p>JavaScript变量名允许包含字母、数字、美元符号和下划线（但第一个字母不允许是数字）。首选格式：驼峰格式（camel case）。</p>
+
+<p>字面量（literal）：可以直接在JavaScript代码中写出来的数据。如下代码中的单词“happy”</p>
+
+<p><code>var myMood = "happy"</code> </p>
+
+<h4 id="224">2.2.4 数据类型</h4>
+
+<p>类型声明（typing）：声明变量的同时同时声明变量的数据类型。</p>
+
+<p>强类型（strongly typed）语言：必须明确类型声明；</p>
+
+<p>弱类型（weakly typed）语言：不需要进行类型声明。</p>
+
+<p>数据类型：</p>
+
+<p>1.字符串</p>
+
+<p>字符串由零个或多个字符构成。字符包括（但不限于）字母、数字、标点符号和空格。字符串必须包在引号里。单引号双引号均可。但最好是根据字符串所包含的字符来选择。若字符串包含双引号，就把整个字符串放在单引号里；如果字符串包含单引号，就把整个字符串放在双引号里。</p>
+
+<p><code>var mood = "don't ask"</code></p>
+
+<p>如果想在上面这条语句中使用单引号，就必须保证字母“n”和“t”之间的单引号能被当成这个字符串的一部分。这种情况下这个单引号需要被看作一个普通字符，而不是这个字符串的结束标志。这种情况我们需要对这个字符进行转义（escaping）。在JavaScript里用反斜线对字符进行转义：</p>
+
+<p><code>var mood = "don\'t ask";</code></p>
+
+<p>2.数值：不用限定必须是一个整数。可以是带小数点的数值，并且允许任意位小数（即浮点数）。也可以是负数。或者是负数浮点数。</p>
+
+<p>3.布尔值：true或false</p>
+
+<h4 id="225">2.2.5 数组</h4>
+
+<p>字符串、数值和布尔值都是标量（scalar）。如果某个变量是标量，它在任意时刻就只能有一个值、如果想用一个变量来存储一组值，就需要使用数组（array）。</p>
+
+<p>数组：用一个变量表示一个值的集合，集合中的每个值都是这个数组的一个元素（element）。</p>
+
+<p>数组可以用关键字Array声明。声明数组的同时还可以指定数组初始元素个数，也就是这个数组的长度（length）：</p>
+
+<p><code>var demo = Array(4);</code></p>
+
+<p>向数组中添加元素的操作称为填充（populating）。在填充数组时，不仅需要给出新元素的值，还需要给出新元素在数组中的存放位置，这个位置就是这个元素的下标（index）。数组中一个元素对应一个下标。下标必须用方括号括起来：</p>
+
+<p><code>array[index] = element;</code></p>
+
+<p>即方式一：</p>
+
+<p><code>var demo = Array(4);</code></p>
+
+<p><code>array[0] = element1;</code></p>
+
+<p><code>array[1] = element2;</code></p>
+
+<p><code>array[2] = element3;</code></p>
+
+<p><code>array[3] = element4;</code></p>
+
+<p>方式二：</p>
+
+<p><code>var demo = Array(element1,element2,element3,element4);</code></p>
+
+<p>方式三：</p>
+
+<p><code>var demo = [element1,element2,element3,element4];</code></p>
+
+<p>数组元素可以是字符串、布尔值或者是数值。甚至可以是这3种数据类型的混合。</p>
+
+<p>数组元素也可以是变量，可以是另一个数组的元素。甚至可以包含其他的数组！</p>
+
+<p>关联数组：</p>
+
+<p><code>var lennon = Array();</code></p>
+
+<p><code>lennon["name"] = "John";</code></p>
+
+<p><code>lennon["year"] = 1940;</code></p>
+
+<p><code>lennon["living"] = false;</code></p>
+
+<p>这样的数组可以使用字符串来代替数字值，因为代码更具有可读性。</p>
+
+<p>但是！！！这种用法并不是一个好习惯。本质上，创建关联数组时，创建的是Array对象的属性。在JavaScript中，所有的变量实际上都是某种类型的对象。比如，一个布尔值就是一个Boolean类型的对象。</p>
+
+<p>在上面的例子中，实际上是给lennon 数组添加了 name、year和 living三个属性。理想情况下，不应该修改Array对象的属性，而应该使用通用的对象（object）。</p>
+
+<h4 id="226">2.2.6</h4>
+
+<p>与数组类似，对象也是使用一个名字表示一组值。对象的每个值都是对象的一个属性。例如，上面的lennon数组也可以创建成下面这个对象：</p>
+
+<p><code>var lennon = Object();</code></p>
+
+<p><code>lennon.name = "John";</code></p>
+
+<p><code>lennon.year = 1940;</code></p>
+
+<p><code>lennon.living = false;</code></p>
+
+<p>与使用Array 类似，创建对象使用 Object关键字。它不使用方括号和下标来获取元素，而是和任何JavaScript对象一样，使用点号来获取属性。</p>
+
+<p>另一种方法：花括号语法：</p>
+
+<p><code>{ propertyName:value,propertyName:value}</code></p>
+
+<p>比如，lennon 对象也可以写成下面这样：</p>
+
+<p><code>var lennon = { name:"John",year:1940,living:false};</code></p>
+
+<p>属性名与JavaScript变量的命名规则有相同之处，属性值可以是任何JavaScript值，包括其他对象。</p>
+
+<p>用对象来代替传统数组的做法意味着可以通过元素的名字而不是下标数字来引用它们。这大大提高了脚本的可读性。</p>
+
+<p>下面，创建一个新的beatles数组，并用刚才创建的lennon对象来填充它的第一个元素。</p>
+
+<p><code>var beatles = Array();</code></p>
+
+<p><code>beatles[0] = lennon;</code></p>
+
+<p>现在，不需要使用那么多数就可以获得想要的元素。我们不能使用 beatles[0][0] 而是使用 beatles[0].name 得到值"john".</p>
+
+<p>在此基础上，可以做进一步的改进：把 beatles 数组也声明为对象而不是传统数组。这样一来，我们就可以用“drummer”或“bassist”等更有意义且更容易记忆的字符串值——而不是一些枯燥乏味的整数——作为下标去访问这个数组里的元素了：</p>
+
+<p><code>var beatles = {};</code></p>
+
+<p><code>beatles.vocalist = lennon;</code></p>
+
+<p>现在,beatles.vocalist.name的值是“john”，beatles.vocalist.year的值是1940，beatles.vocalist.living的值是false。</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "post4.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
